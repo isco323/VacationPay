@@ -12,6 +12,13 @@ import java.util.List;
 @Service
 public class CalculateService {
     public double countMoney(Double averageSalary, int vacationDays, String vacationStartDate){
+        if(averageSalary < 0 || vacationDays < 0){
+            throw new IllegalArgumentException("Data cannot be negative.");
+        }
+        if (vacationStartDate.isEmpty())
+        {
+            return (averageSalary / 29.3) * vacationDays;
+        }
         LocalDate startDate = LocalDate.parse(vacationStartDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         LocalDate endDate = startDate.plusDays(vacationDays);
         int workDays = 0;
@@ -30,9 +37,6 @@ public class CalculateService {
                 }
             }
         }
-        return averageSalary / 29.3 * (workDays - holidays);
-    }
-    public double countMoney(Double averageSalary, int vacationDays){
-        return averageSalary / 29.3 * vacationDays;
+        return (averageSalary / 29.3) * (workDays - holidays);
     }
 }

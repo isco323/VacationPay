@@ -17,10 +17,6 @@ public class CalculateController {
     public double count(@RequestParam Double averageSalary,
                       @RequestParam int vacationDays,
                       @RequestParam(required = false) String vacationStartDate){
-        if (vacationStartDate != null) {
-            return calculateService.countMoney(averageSalary, vacationDays, vacationStartDate);
-        } else {
-            return calculateService.countMoney(averageSalary, vacationDays);
-        }
+        return calculateService.countMoney(averageSalary, vacationDays, vacationStartDate);
     }
 }
