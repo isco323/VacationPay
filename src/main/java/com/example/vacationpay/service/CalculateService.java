@@ -2,7 +2,6 @@ package com.example.vacationpay.service;
 
 import com.example.vacationpay.repo.WeekndRepo;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -30,9 +29,8 @@ public class CalculateService {
             {
                 workDays++;
             }
-            for (int i = 0; i < holiDates.size(); i++)
-            {
-                if(date.getMonth()==holiDates.get(i).getMonth() && date.getDayOfMonth()==holiDates.get(i).getDayOfMonth()){
+            for (LocalDate holiDate : holiDates) {
+                if (date.getMonth() == holiDate.getMonth() && date.getDayOfMonth() == holiDate.getDayOfMonth()) {
                     holidays++;
                 }
             }
